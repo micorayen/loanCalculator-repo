@@ -16,7 +16,6 @@ import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
@@ -28,11 +27,14 @@ public class frm_loanCalculator {
 	private static JButton btn1, btn2;
 	private static JLabel lbl_loanAmount,lbl_annualInterest,lbl_mPayment,lbl_loanPeriod,lbl_installmentsNumber;
 	private static JLabel lbl_totalInterest,lbl_totalPrincipal,lbl_totalRepayment,lbl_interestOverCapital;
+	double loanAmount, loanPeriod, annualInterest;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,11 +85,11 @@ public class frm_loanCalculator {
 				    if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				    	if(a.equals("") || a.equals(".")) {
 				    		JOptionPane.showMessageDialog(frame, "enter loan amount first!", "Message", JOptionPane.ERROR_MESSAGE);
-				    		txt2.enable(false);
+				    		txt2.setEnabled(false);
 				    		txt1.requestFocus();
 				    	}
 				    	else {
-				    		txt2.enable(true);
+				    		txt2.setEnabled(true);
 				    		txt2.requestFocus();		
 				    	}
 				    }
@@ -119,11 +121,11 @@ public class frm_loanCalculator {
 				    if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 				    	if(a.equals("") || a.equals(".")) {
 				    		JOptionPane.showMessageDialog(frame, "enter annual interest rate, first!", "Message", JOptionPane.ERROR_MESSAGE);
-				    		txt3.enable(false);
+				    		txt3.setEnabled(false);
 				    		txt2.requestFocus();
 				    	}
 				    	else {
-				    		txt3.enable(true);
+				    		txt3.setEnabled(true);
 				    		txt3.requestFocus();		
 				    	}
 				    }
@@ -373,7 +375,7 @@ public class frm_loanCalculator {
 		
 	}
 		// Put action on button "Monthly Payment"
-		public static void calculateResult(){
+		private static void calculateResult(){
 			String result;
 			double loanAmount,annualInterest,monthlyPayment,loanPeriod,installmentsNumber;
 			double totalInterest,totalPrincipal,totalRepayment,interestOverCapital;
@@ -425,7 +427,7 @@ public class frm_loanCalculator {
 		}
 		
 		// Put action on button "Clear"
-		public static void clearLoanCalculator(){
+		private static void clearLoanCalculator(){
 			txt1.setText("");
 			txt2.setText("");
 			txt3.setText("");
@@ -441,8 +443,8 @@ public class frm_loanCalculator {
 			lbl_totalRepayment.setText("-");
 			lbl_interestOverCapital.setText("-");
 			
-			txt2.enable(false);
-			txt3.enable(false);
+			txt2.setEnabled(false);
+			txt3.setEnabled(false);
 			btn1.setEnabled(false);
 			txt1.requestFocus();
 		}
